@@ -363,7 +363,7 @@ $.imgAreaSelect = function (img, options) {
             $handles.slice(2,4).css({ top: h });
         }
 
-        if (resetKeyPress !== false) {
+        if (resetKeyPress !== false && options.keys) {
             /*
              * Need to reset the document keypress event handler -- unbind the
              * current handler
@@ -372,13 +372,12 @@ $.imgAreaSelect = function (img, options) {
                 $(document).unbind($.imgAreaSelect.keyPress,
                     $.imgAreaSelect.onKeyPress);
 
-            if (options.keys)
-                /*
-                 * Set the document keypress event handler to this instance's
-                 * docKeyPress() function
-                 */
-                $(document)[$.imgAreaSelect.keyPress](
-                    $.imgAreaSelect.onKeyPress = docKeyPress);
+            /*
+             * Set the document keypress event handler to this instance's
+             * docKeyPress() function
+             */
+            $(document)[$.imgAreaSelect.keyPress](
+                $.imgAreaSelect.onKeyPress = docKeyPress);
         }
 
         /*
